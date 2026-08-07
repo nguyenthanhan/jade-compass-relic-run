@@ -8,7 +8,7 @@ import { createGroq, GroqProvider } from "@ai-sdk/groq";
 import { createMistral, MistralProvider } from "@ai-sdk/mistral";
 import {
   createOpenRouter,
-  LanguageModelV3,
+  LanguageModelV4,
   OpenRouterProvider,
 } from "@openrouter/ai-sdk-provider";
 import { generateObject, generateText } from "ai";
@@ -56,7 +56,7 @@ export class VercelAIProvider extends BaseLLMProvider {
     }
   }
 
-  private getAIModel(): LanguageModelV3 {
+  private getAIModel(): LanguageModelV4 {
     switch (this.aiProvider) {
       case "openai-ai-sdk":
         if (!this.openai) {

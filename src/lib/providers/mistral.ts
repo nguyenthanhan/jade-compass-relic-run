@@ -74,8 +74,13 @@ export class MistralProvider extends BaseLLMProvider {
         // maxTokens: 4000,
       });
 
+      const firstChoice = response.choices?.[0];
+      if (!firstChoice) {
+        throw new Error(`No choices in response from ${this.name}`);
+      }
+
       const jsonText = parseJSONResponse<object>(
-        (response.choices[0].message.content as string) || "",
+        (firstChoice.message?.content as string) || "",
       );
       const parsedResponse = validateFullStoryResponse(jsonText, {
         rounds: totalRounds,
